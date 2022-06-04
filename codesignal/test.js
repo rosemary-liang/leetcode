@@ -47,16 +47,3 @@ const obj = {
 }
 
 
-/*
-classes pseudocode
-
-class Professor
-  properties
-    name
-    subject
-  constructor(name, subject)       <-- initializes properties when new professor is created
-  methods
-    grade(paper)
-    introduceSelf()
-*/
-
