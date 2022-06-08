@@ -47,3 +47,52 @@ const obj = {
 }
 
 
+// ES5
+function Person (n, a) {
+  this.n = n;
+  this.a = a;
+}
+
+Person.prototype.getN = function () {
+  return this.getN
+}
+
+Person.prototype.setN = function (newName) {
+  this.n = newName;
+}
+
+function Student (n, a, g) {
+  Person.call(this, n, a);
+  this.g = g;
+}
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.getG = function () {
+  return this.g;
+}
+
+
+//ES6
+class Person {
+  constructor(n, a) {
+    this.n = n;
+    this.a = a;
+  }
+
+   getN() {
+     return this.n;
+   }
+
+   setN(newName) {
+     this.n = newName;
+   }
+}
+
+class Student extends Person {
+  constructor(n, a, g) {
+    super(n, a);
+    this.g = g;
+  }
+
+  
+}
