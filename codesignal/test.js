@@ -94,5 +94,15 @@ class Student extends Person {
     this.g = g;
   }
 
-  
+
 }
+
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+
+const add5 = makeAdder(5);
+add5(2); // returns 7
