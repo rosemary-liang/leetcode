@@ -123,4 +123,20 @@ class LinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    // edge cases: remove 1st item (shift); remove last item (pop); remove in middle
+    // edge case: invalid index
+    if (index < 0 || index >= length) return false
+    if (index === 0 ) return this.shift();
+    if (index === length - 1) return this.pop();
+
+    const before = this.get(index - 1); // this is the item before the one being removed
+    const temp = before.next; // more efficient way to access this node
+
+    before.next = temp.next; // set pointer to skip over the node being removed
+    temp.next = null; // break temp off the list
+    this.length--;
+    return temp; // return item removed from list
+  }
 }
