@@ -34,14 +34,45 @@ class DoublyLinkedList {
     // O(1) with doubly LL
     // edge: 1 item only, no items, multiple items
     if (this.length === 0) return undefined;
+    let temp = this.tail;
     if (this.length === 1) {
       this.head = null;
       this.tail = null;
     } else {
-      let temp = this.tail;
-      this.tail = this.tail.prev; // move tail to the prev node
+      this.tail = this.tail.prev; // move tail to the prev node (reassign tail)
       this.tail.next = null; // break off next link of temp
       temp.prev = null; // break off prev link of temp
+    }
+    this.length--;
+    return temp;
+  }
+
+  unshift(value) {
+    //edge: empty list, non empty list
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head; // newNode points to head
+      this.head.prev = newNode; // head points to newNode
+      this.head = newNode; // reassign head
+    }
+    this.length++;
+    return this;
+  }
+
+  shift() {
+    // edge: empty, 1 item, multiple items
+    if (this.length === 0) return undefined;
+    let temp = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next; // reassign head
+      this.head.prev = null; // break item prev pointer
+      temp.next = null; // break item next pointer
     }
     this.length--;
     return temp;
