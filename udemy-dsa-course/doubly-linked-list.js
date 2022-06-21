@@ -83,7 +83,8 @@ class DoublyLinkedList {
     let temp = this.head;
 
     if (index < this.length / 2) {
-      for (let i = 0; i < this.length; i++) {
+      for (let i = 0; i < index; i++) {
+        // check if statement condition!! between index, length, length -1
         temp = temp.next; // move temp until you get to correct index
       }
     } else {
@@ -103,5 +104,37 @@ class DoublyLinkedList {
       return true;
     }
     return false;
+  }
+
+  insert(index, value) {
+    // edge: index 0 - unshift; index = length - push, or insert in middle
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+
+    const newNode = new Node(value);
+    const before = this.get(index - 1); // O(n)
+    const after = before.next; // O(n) because using before
+    before.next = newNode; // before points to newNode going forward
+    newNode.next = after; // newNode points to after going forward
+    newNode.prev = before; // NEW! newNode points to before going backward
+    after.prev = newNode; // NEW! after points to newNode going backward
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    //edge: remove first, remove last, remove middle
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length) return this.pop();
+
+    let temp = this.get(index);
+    temp.prev.next = temp.next; // point prev to next (point forward skipping temp)
+    temp.next.prev = temp.prev; // point next to prev (point backward skipping temp)
+    temp.next = null; // disconnect temp
+    temp.prev = null; // disconnect temp
+    this.length--;
+    return temp;
   }
 }
