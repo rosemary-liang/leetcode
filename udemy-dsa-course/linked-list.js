@@ -139,4 +139,25 @@ class LinkedList {
     this.length--;
     return temp; // return item removed from list
   }
+
+  reverse() {
+    // need 3 pointers prev temp next
+    let temp = this.head;
+    this.head = this.tail; // reverse head and tail
+    this.tail = temp;
+
+    // reverse all the nodes in between
+    // move prev temp next through the list as everything is reversing
+    let next = temp.next;
+    let prev = null;
+
+    // create for loop
+    for (let i = 0; i < this.length; i++) {
+      next = temp.next; // already true in 1st iteration // 2nd loop gives access to next node (helper pointer)
+      temp.next = prev; // on 2nd loop, flips arrow to point other direction
+      prev = temp; // move prev to next node
+      temp = next; // move temp to next
+    }
+    return this;
+  }
 }
