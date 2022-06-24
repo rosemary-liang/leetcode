@@ -96,6 +96,37 @@ class LinkedList {
   }
 
   insert(index, value) {
+    // edge insert at first, last, middle
+    // edge invalid index
+
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+
+    const newNode = new Node(value);
+    const temp = this.get(index - 1);
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    // edge remove 1st, last, middle
+    // edge invalid index
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return this.shift();
+    if (index === this.length) return this.pop();
+
+    const before = this.get(index - 1);
+    const temp = before.next;
+    before.next = temp.next; // connect before to temp.next(skip over temp)
+    temp.next = null; // disconnect temp
+    this.length--;
+    return temp;
+  }
+
+  reverse() {
     
   }
 }
