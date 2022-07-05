@@ -35,4 +35,15 @@ class Graph {
     }
     return false; // if both vertices don't exist
   }
+
+  removeVertex(vertex) {
+    // remove edges (empty the array and corresponding edge), then remove vertex
+    if (!this.adjacencyList[vertex]) return undefined;
+    while (this.adjacencyList[vertex].length) {
+      let temp = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, temp);
+    }
+    delete this.adjacencyList[vertex];
+    return this;
+  }
 }
