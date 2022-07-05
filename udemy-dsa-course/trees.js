@@ -57,4 +57,11 @@ class BST {
     }
     return false; // if you get to the end (null-terminated list) break out of while loop and  return false
   }
+
+  minValueNode(currentNode) {
+    while (currentNode.left !== null) {
+      currentNode = currentNode.left;
+    }
+    return currentNode;
+  }
 }
