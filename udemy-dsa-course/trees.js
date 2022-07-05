@@ -40,4 +40,21 @@ class BST {
       }
     }
   }
+
+  contains(value) {
+    //edge empty tree
+    if (this.root === null) return false;
+    let temp = this.root;
+    while (temp) {
+      if (value < temp.value) {
+        // compare value passed into this against temp.value, if no match move left/right
+        temp = temp.left;
+      } else if (value > temp.value) {
+        temp = temp.right;
+      } else {
+        return true;
+      }
+    }
+    return false; // if you get to the end (null-terminated list) break out of while loop and  return false
+  }
 }
