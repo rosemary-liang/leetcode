@@ -42,4 +42,28 @@ const twoSum = (nums, target) => {
   return [];
 };
 
+// return indices
+/*
+create a Map of complements
+for loop,
+const complement = target - num[i]
+check if Map has complement
+  // TRUE: return
+  // FALSE: set with [nums[i], index]
+  time: O(n)
+  space: O(1)
+*/
 
+const twoSum = (nums, target) => {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map.has(complement)) {
+      return [i, map.get(complement)];
+    } else {
+      map.set(nums[i], i);
+    }
+  }
+  return null;
+};
