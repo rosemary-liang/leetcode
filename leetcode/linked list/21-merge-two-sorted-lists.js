@@ -20,7 +20,6 @@
 // - 100 <= Node.val <= 100
 // Both list1 and list2 are sorted in non - decreasing order.
 
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -29,10 +28,10 @@
  * }
  */
 
- function ListNode(val, next) {
-  this.val = (val===undefined ? 0 : val)
-  this.next = (next===undefined ? null : next)
-  }
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
 /**
  * @param {ListNode} list1
  * @param {ListNode} list2
@@ -69,7 +68,6 @@
 
 // };
 
-
 // var mergeTwoLists = function (l1, l2) {
 //   var mergedHead = { val: -1, next: null },
 //     crt = mergedHead;
@@ -90,8 +88,6 @@
 //   return mergedHead.next;
 // };
 
-
-
 var mergeTwoLists = function (l1, l2) {
   var mergedHead = { val: -1, next: null }, // set dummy head
     crt = mergedHead;
@@ -104,10 +100,88 @@ var mergeTwoLists = function (l1, l2) {
       crt.next = l2;
       l2 = l2.next;
     }
-    crt = crt.next. // change crt so it's no longer mH, instead it's mH.n...
+    crt = crt.next; // change crt so it's no longer mH, instead it's mH.n...
   }
 
-  crt next = l1 || l2;
+  crt.next = l1 || l2;
 
   return mergedHead.next; // remove dummy head
+};
+
+/* 7/6/22
+set up a dummy head and assign temp to dummy head
+while l1 and l2 are not null
+  compare l1.value and l2.value, reassign temp to smaller value
+  reassign smaller list to list.next
+
+  exit if statement
+  move temp to temp.next
+
+exit loop
+temp.next = remaining non-null list
+return dummyhead.next to remove dummy head node
+ */
+var mergeTwoLists = function (l1, l2) {
+  let dummyHead = { val: -1, next: null }; // mispelled val (used value instead of val)
+  let temp = dummyHead;
+
+  while (l1 && l2) {
+    // mistake: used '&' isntead of '&&'
+    if (l1.val <= l2.val) {
+      // mistake: used 'l1' instead of 'l1.val'
+      temp.next = l1;
+      l1 = l1.next;
+    } else {
+      temp.next = l2;
+      l2 = l2.next;
+    }
+    temp = temp.next; // mistake: forgot this line as last part of while looop
+  }
+
+  temp.next = l1 || l2;
+
+  return dummyHead.next;
+};
+
+/* 7/6/22 part 2
+return head of merged LL
+
+initialize dummy head
+initialize temp and assign to dummy head
+
+while loop (if l1 && l2 are valid, not null)
+  check if l1.val <= l2.val
+    T: temp.next = l1
+       l1 = l1.next
+    ELSE: temp.next = l2
+          l2 = l2.next
+  exit if statement
+  temp = temp.next
+
+exit while loop
+
+temp.next = l1 || l2
+return dummyhead.next
+
+input 1: [1,2,4], [2,4], [4], []
+input 2: [1,3,4],  [3,4], [4]
+*/
+
+var mergeTwoLists = function (l1, l2) {
+  let dummyHead = { val: -1, next: null }; // [ 1, 1, 2, 3, 4, 4  ]
+  let temp = dummyHead; // -1 // 1 // 1 // 2 // 3
+
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      temp.next = l1;
+      l1 = l1.next;
+    } else {
+      temp.next = l2;
+      l2 = l2.next;
+    }
+    temp = temp.next;
+  }
+
+  temp.next = l1 || l2;
+  return dummyHead.next;
 };
