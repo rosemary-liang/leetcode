@@ -53,7 +53,6 @@ var hasCycle = function (head) {
 
   while (head) {
     if (set.has(head)) return true;
-    if (!head) return false;
     set.add(head);
     head = head.next;
   }
@@ -92,10 +91,115 @@ var hasCycle = function (head) {
 
 var hasCycle = function (head) {
   while (head) {
-    if (!head) return false;
     if (head.seen) return true;
     head.seen = true;
     head = head.next;
   }
   return false;
 };
+
+/* 7/7/22
+2 pointers - 1 fast and 1 slow, if they are ever equal return true, otherwise return false
+initialize fast and slow pointers to head
+while both fast and slow are not null
+  if fast.next = slow return true
+  if fast.next null return false (indicates break in cycle)
+
+  move fast 2 nodes
+  move slow 1 node
+
+  exit loop if either fast or slow points to null
+  return false
+
+add a property/hashmap - if a head has been traversed already return true, otherwise return false
+
+initialize set
+
+while head is not null
+if set has head, return true
+if not, add head to set
+
+exit if
+move head to head.next
+
+exit loop
+return false
+*/
+
+const hasCycle = (head) => {
+  const set = new Set();
+
+  while(head) {
+    if set.has(head) {
+      return true;
+    } else {
+      set.add(head);
+    }
+    head = head.next;
+  }
+  return false;
+}
+
+const hasCycle = (head) => {
+  let fast = head;
+  let slow = head;
+
+  while (fast && slow) {
+    if (fast.next = slow) return true;
+    if (!fast.next) return false;
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return false;
+}
+
+/* 7/7/22 part 2
+2 pointers or set/adding a property
+initialize fast and slow to head
+
+while fast && slow not null
+  if fast.next = slow
+
+
+set
+initialize set
+
+while head is not null
+  check if set has head
+    if true, return true
+    if false, add head to set
+  exit if
+  move head pointer
+exit loop
+return false
+
+*/
+
+const hasCycle = (head) => {
+  const set = new Set();
+
+  while(head) {
+    if (set.has(head)) {
+      return true;
+    } else {
+      set.add(head)
+    }
+    head = head.next;
+  }
+  return false;
+}
+
+
+const hasCycle = (head) => {
+  let fast = head;
+  let slow = head;
+
+  while(fast && slow) {
+    if (!fast.next) return false;
+    if (fast.next === slow) return true;
+    fast = fast.next.next;
+    slow = slow.next;
+
+  }
+  return false
+}
