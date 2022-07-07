@@ -2,7 +2,6 @@
 
 // An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 
-
 // @param {string} s
 // @param {string} t
 // @return {boolean}
@@ -26,13 +25,12 @@ const isAnagram = (s, t) => {
   tSorted = tArray.sort();
 
   for (let j = 0; j < sSorted.length; j++) {
-    if (sSorted[j] !== tSorted[j]){
+    if (sSorted[j] !== tSorted[j]) {
       return false;
     }
   }
   return true;
-}
-
+};
 
 // recommended solution using map
 
@@ -44,7 +42,7 @@ const isAnagram = (s, t) => {
   const counts = {};
   for (let c in s) {
     // if counts[c] doesn't exist yet, start count at 0
-    counts[c] = (counts[c] || 0) + 1
+    counts[c] = (counts[c] || 0) + 1;
   }
   for (let c in t) {
     // if count doesn't exist yet, is false
@@ -55,4 +53,47 @@ const isAnagram = (s, t) => {
     counts[c]--;
   }
   return true;
-}
+};
+
+/*7/7/22
+return boolean
+
+edge: non alpha chars? empty string?
+
+check if length of both strings matches, if not return false
+
+initialize empty object
+loop through s, check if object[s[i]] exists
+  if true, increment
+  if false, add it and set value to zero
+
+exit loop
+
+loop through t, check if object[t[i]] exists
+  if false, return false
+  if true, decrement
+
+exit loop
+return true
+
+*/
+
+const isAnagram = (s, t) => {
+  if (s.length !== t.length) return false;
+
+  const counter = {};
+  for (let i = 0; i < s.length; i++) {
+    if (!counter[s[i]]) {
+      counter[s[i]] = 1; // initialize this at 1
+    } else {
+      counter[s[i]]++;
+    }
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    if (!counter[t[i]]) return false;
+    counter[t[i]]--;
+  }
+
+  return true;
+};
