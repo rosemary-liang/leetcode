@@ -50,3 +50,34 @@ var canConstruct = function (ransomNote, magazine) {
   }
   return true;
 };
+
+/* 7/8/22
+return boolean
+
+loop thru magazine, map all characters and count occurrences
+exit loop
+
+loop thru ransom note, check if char and count can be decremented
+return false if cannot
+
+exit loop return true
+*/
+
+var canConstruct = function (ransomNote, magazine) {
+  const map = {};
+
+  for (let char of magazine) {
+    if (!map[char]) {
+      map[char] = 1;
+    } else {
+      map[char]++;
+    }
+  }
+
+  for (let char of ransomNote) {
+    if (!map[char]) return false;
+    map[char]--;
+  }
+
+  return true;
+};
