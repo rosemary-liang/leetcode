@@ -148,3 +148,42 @@ class myQueue {
     if (!this.popStack.length && !this.pushStack.length)
   }
 }
+
+/* 7/8/22
+push
+pop - if popstack is empty, pop all items from pushStack, then pop
+peek
+empty - return boolean
+ */
+class myQueue {
+  constructor{
+    this.pushStack = [];
+    this.popStack = [];
+  }
+
+  push(value) {
+    this.pushStack.push(value);
+  }
+
+  pop() {
+    if (!this.popStack.length) {
+      while(this.pushStack.length) {
+        this.popStack.push(this.pushStack.pop())
+      }
+    }
+    return this.popStack.pop();
+  }
+
+  peek() {
+     if (!this.popStack.length) {
+      while(this.pushStack.length) {
+        this.popStack.push(this.pushStack.pop())
+      }
+    }
+    return this.popStack[this.popStack.length-1];
+  }
+
+  empty() {
+    return !this.popStack.length && !this.pushStack.length
+  }
+}
