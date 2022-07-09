@@ -40,3 +40,35 @@ var longestPalindrome = function (s) {
   const addtl = set.size > 0 ? 1 : 0; // if set has remaining items, only 1 letter can be added to maintain symmetry
   return count + addtl;
 };
+
+/* 7/8/22 part 2
+return the length
+
+initialize a new set
+initialize counter at 0
+
+loop through char of s
+  if set has char, delete it and increment counter
+  else set.add char
+
+exit loop
+initialize remainder, set to 0 or 1 depending on if set.size truthy/falsy
+return counter + remainder
+ */
+
+const longestPalindrome = (s) => {
+  const set = new Set();
+  let counter = 0;
+
+  for (let char of s) {
+    if (set.has(char)) {
+      set.delete(char);
+      counter += 2;
+    } else {
+      set.add(char);
+    }
+  }
+
+  const remainder = set.size ? 1 : 0;
+  return counter + remainder;
+};
