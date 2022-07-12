@@ -31,7 +31,7 @@ function selectionSort(array) {
 
 selectionSort([4, 2, 6, 5, 1, 3]);
 
-// insertion sort
+// insertion sort O(n) if you have almost sorted data, otherwise all basic sort is O(n)^2
 // always start with 2nd item, compare with item before it, before it, switch if needed
 function insertionSort(array) {
   let temp;
