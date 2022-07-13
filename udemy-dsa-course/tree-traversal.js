@@ -89,6 +89,18 @@ class BST {
     traverse(this.root);
     return results;
   }
+
+  // push node after it has already traversed left
+  DFSInOrder() {
+    let results = [];
+    function traverse(currentNode) {
+      if (currentNode.left) traverse(currentNode.left);
+      results.push(currentNode.value); // push node after traverse left
+      if (currentNode.right) traverse(currentNode.right);
+    }
+    traverse(this.root);
+    return results;
+  }
 }
 
 let myTree = new BST();
