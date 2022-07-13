@@ -33,3 +33,12 @@ function quickSort(array, left = 0, right = array.length - 1) {
 }
 
 quickSort([4, 6, 1, 7, 3, 2, 5]);
+
+/**
+ * Big O
+ * time: O(n) + O logn = O(n log n) BEST CASE for if you have unsorted/random data
+ * time: O(n^2) WORST CASE if you already have sorted/almost sorted data (insertion sort is better if sorted)
+ * space: O(1)
+ *
+ *
+ */
