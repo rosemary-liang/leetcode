@@ -66,12 +66,25 @@ class BST {
     return results;
   }
 
+  // push node before traversing left/right
   DFSPreOrder() {
     let results = [];
     function traverse(currentNode) {
       results.push(currentNode.value);
       if (currentNode.left) traverse(currentNode.left);
       if (currentNode.right) traverse(currentNode.right);
+    }
+    traverse(this.root);
+    return results;
+  }
+
+  // push node only after left/right completed traverse
+  DFSPostOrder() {
+    let results = [];
+    function traverse(currentNode) {
+      if (currentNode.left) traverse(currentNode.left);
+      if (currentNode.right) traverse(currentNode.right);
+      results.push(currentNode.value);
     }
     traverse(this.root);
     return results;
