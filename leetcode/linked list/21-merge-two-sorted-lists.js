@@ -185,3 +185,46 @@ var mergeTwoLists = function (l1, l2) {
   temp.next = l1 || l2;
   return dummyHead.next;
 };
+
+/* 7/14/22 part 2
+return head of merged LL
+
+initialize dummy head
+initialize temp and assign to dummy head
+
+while loop (if l1 && l2 are valid, not null)
+  check if l1.val <= l2.val
+    T: temp.next = l1
+       l1 = l1.next
+    ELSE: temp.next = l2
+          l2 = l2.next
+  exit if statement
+  temp = temp.next
+
+exit while loop
+
+temp.next = l1 || l2
+return dummyhead.next
+
+input 1: [1,2,4], [2,4], [4], []
+input 2: [1,3,4],  [3,4], [4]
+*/
+
+var mergeTwoLists = function (l1, l2) {
+  let dummyHead = { val: -1, next: null }; // [ 1, 1, 2, 3, 4, 4  ]
+  let temp = dummyHead; // -1 // 1 // 1 // 2 // 3
+
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      temp.next = l1;
+      l1 = l1.next;
+    } else {
+      temp.next = l2;
+      l2 = l2.next;
+    }
+    temp = temp.next;
+  }
+
+  temp.next = l1 || l2;
+  return dummyHead.next;
+};
