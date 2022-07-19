@@ -20,7 +20,7 @@ print(fruits2, type(fruits2))
 # get len
 print(len(fruits))
 
-# A Set is a collection which is unordered and unindexed. No duplicate members.
+# A Set is a collection which is unordered and unindexed. No duplicate members. wont add dupes
 
 # create a Set
 fruits_set = {'Apples', 'Oranges', 'Mangos'}
