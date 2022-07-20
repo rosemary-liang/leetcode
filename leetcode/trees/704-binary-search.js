@@ -27,15 +27,15 @@ nums is sorted in ascending order. */
  */
 
 /*
+SEE DETAILED NOTES on paper
 initialize low at index 0 and last index
 
 while low < high
   assign mid variable
     high - low divided by 2... take floor and use upper mid
   LOWER MID PROBLEM - INIFINITE LOOP: if only 2 numbers left and logic falls into ELSE,  doesn't do anything and wil shrink into itself
-
-
-
+`
+TO AVOID INFINITY LOOP:
   IF CHOOSE UPPER MID, ELSE MUST BE low=mid
   IF CHOOSE LOWER MID, ELSE MUST BE high=mid
 
@@ -47,27 +47,14 @@ exit loop
 return either the index or -1
 */
 
-var search = function (nums, target) {
-  let low = 0;
-  let high = nums.length - 1;
-
-  while (low < high) {
-    let mid = low + Math.floor((high - low) / 2);
-    if (target < nums[mid]) {
-      high = mid - 1;
-    } else {
-      low = mid;
-    }
-  }
-  return nums[low] === target ? low : -1;
-};
+// time complexity: O(nlogn) if sorted
 
 var search = function (nums, target) {
   let low = 0;
   let high = nums.length - 1;
 
   while (low < high) {
-    let mid = low + Math.floor(high - low + 1 / 2);
+    let mid = low + Math.floor((high - low + 1) / 2);
     if (target < nums[mid]) {
       high = mid - 1;
     } else {
