@@ -1,4 +1,4 @@
-# with hasmap, o(n)
+# with hashmap, o(n)
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         count = {}
