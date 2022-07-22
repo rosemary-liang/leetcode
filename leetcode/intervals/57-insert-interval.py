@@ -40,12 +40,12 @@ class Solution:
       res = []
 
       for i in range(len(intervals)):
-        # if new comes before current
+        # if new comes before current, append new (smaller)
         if newInterval[1] < intervals[i][0]:
           res.append(newInterval)
           return res + intervals[i:]
 
-        # if new comes after current
+        # if new comes after current, append current (smaller)
         elif newInterval[0] > intervals[i][1]:
           res.append(intervals[i])
         # if overlapping
