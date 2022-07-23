@@ -53,4 +53,4 @@ class Solution:
           copy.neighbors.append(dfs(nb))
         return copy
 
-      return dfs(node)
+      return dfs(node) else None
