@@ -52,7 +52,7 @@ class Solution:
 
       # this means loop start at dp[0]
       for a in range(1, amount + 1):
-        for c in coin:
+        for c in coins:
           if c <= a:
             #number of coins needed = 1 # of current coin + dp[amount - coin value]
             dp[a] = min(dp[a], 1 + dp[a - c])
