@@ -26,7 +26,7 @@ class Solution:
             if ((r) in range(rows) and
                 (c) in range(cols) and
                 grid[r][c] == '1' and
-                (r, c + dc) not in visit):
+                (r, c) not in visit):
                   q.append((r, c))
                   visit.add((r,c))
 
