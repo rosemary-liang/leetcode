@@ -27,7 +27,7 @@ class Solution:
         l += 1
 
       #edge to swap right
-      elif nums[i] == 2
+      elif nums[i] == 2:
         swap(r, i)
         r -= 1
         i -= 1 # don't move i if right swap
