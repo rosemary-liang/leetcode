@@ -1,3 +1,6 @@
+# check if target is in dp
+# edge: if sum is odd
+# dp as set, base is dp.add(0) bc choosing 0 el's --> 0 sum
 
 class Solution:
   def canPartition(self, nums: List[int]) -> bool:
