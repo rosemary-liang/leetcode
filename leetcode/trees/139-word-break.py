@@ -4,7 +4,7 @@
 
 class Solution:
   def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-    dp = [False] * len(s) + 1 #+1 for base case at last position out of bounds of string
+    dp = [False] * (len(s) + 1) #+1 for base case at last position out of bounds of string
     #initialize base case at last position
     dp[len(s)] = True
 
@@ -13,9 +13,8 @@ class Solution:
       # try every word in dict and see if matches
       for w in wordDict:
         # there are enough chars in s for us to compare
-        if (i + len(w)) <= len(s) and
-        # s at index i through i+len(w) ; are the first chars in range equal
-        s[i : i + len(w)] == w:
+         # s at index i through i+len(w) ; are the first chars in range equal
+        if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
           dp[i] = dp[i + len(w)]
         if dp[i]:
           # if true, then break out and move on to next index
@@ -29,4 +28,8 @@ class Solution:
 
     for i in range(len(s) -1, -1, -1):
       for w in wordDict:
-        if ()
+        if (i + len(w) <= len(s)) and s[i : i + len(w)] == w:
+          dp[i] = dp[i + len(w)]
+        if dp[i]:
+          break
+    return dp[0]
